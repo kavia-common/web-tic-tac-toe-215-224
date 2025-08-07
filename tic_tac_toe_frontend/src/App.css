@@ -1,13 +1,232 @@
 /* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
+  /* Kavia + app colors (override as needed) */
+  --ttt-primary: #4A90E2;
+  --ttt-secondary: #FFFFFF;
+  --ttt-accent: #F5A623;
+  --ttt-shadow: 0 6px 24px 0 rgba(74,144,226,0.07);
+
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --text-primary: #222C3A;
+  --text-secondary: #4A90E2;
+  --text-accent: #F5A623;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
+  --button-bg: #4A90E2;
   --button-text: #ffffff;
+  --gray-light: #f0f1f2;
+  --gray-medium: #d3d9dd;
+  --square-size: 80px;
+  --square-font: 2.4rem;
+  --radius: 18px;
+  --header-font: 2.6rem;
+}
+
+/* Minimalistic, light, modern, centered styling for the Tic Tac Toe app */
+
+body,
+.ttt-root {
+  background: var(--bg-primary);
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ttt-root {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+}
+
+.ttt-header {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.ttt-title {
+  font-size: var(--header-font);
+  color: var(--ttt-primary);
+  margin: 0 0 0.15em 0;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.ttt-subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.5px;
+}
+
+.ttt-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ttt-status {
+  margin-bottom: 1em;
+  font-size: 1.18rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.ttt-status-turn {
+  font-weight: 700;
+  font-size: 1.1em;
+  letter-spacing: 0.25px;
+}
+
+.ttt-status-win {
+  color: var(--ttt-accent);
+  font-weight: 700;
+  font-size: 1.28em;
+  letter-spacing: 1px;
+}
+
+.ttt-status-tie {
+  color: var(--ttt-primary);
+  font-weight: 600;
+}
+
+.ttt-board-container {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0 1.1em 0;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--square-size));
+  grid-template-rows: repeat(3, var(--square-size));
+  gap: 0.8em;
+  background: var(--gray-light);
+  border-radius: var(--radius);
+  box-shadow: var(--ttt-shadow);
+  padding: 1em;
+}
+
+.ttt-square {
+  width: var(--square-size);
+  height: var(--square-size);
+  background: var(--ttt-secondary);
+  border: 2px solid var(--border-color);
+  outline: none;
+  border-radius: 16px;
+  font-size: var(--square-font);
+  font-weight: 800;
+  cursor: pointer;
+  transition: 
+    border-color 0.2s cubic-bezier(.71,.03,.27,.88),
+    background 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  box-shadow: 0 0 0 rgba(0,0,0,0.02);
+}
+
+.ttt-square:focus {
+  border-color: var(--ttt-primary);
+  background: #eef8ff;
+}
+
+.ttt-square:not(:empty):hover {
+  cursor: not-allowed;
+}
+.ttt-square:active {
+  transform: scale(0.97);
+}
+.ttt-square[style*="highlight"]:not(:empty) {
+  border-color: var(--ttt-accent);
+}
+
+/* Action buttons at bottom */
+.ttt-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.1em 0 0 0;
+}
+
+.ttt-btn {
+  min-width: 110px;
+  font-size: 1.08rem;
+  background: var(--ttt-primary);
+  border: none;
+  border-radius: 8px;
+  color: var(--ttt-secondary);
+  padding: 0.6em 1.25em;
+  font-weight: 600;
+  margin: 0 auto;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 20px 0 rgb(74,144,226,0.09);
+  transition: background 0.13s, transform 0.13s;
+  cursor: pointer;
+}
+
+.ttt-btn:hover,
+.ttt-btn:focus {
+  background: #256dc4;
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px) scale(1.025);
+}
+
+.ttt-footer {
+  margin-top: 2.5em;
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+
+.ttt-footer-text {
+  font-size: 0.98em;
+  color: #acb0b7;
+}
+
+.ttt-footer-text a {
+  color: var(--ttt-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.13s;
+}
+
+.ttt-footer-text a:hover {
+  color: var(--ttt-accent);
+  text-decoration: underline;
+}
+
+/* Responsive design (mobile) */
+@media (max-width: 680px) {
+  .ttt-header {
+    margin-top: 1.2em;
+    margin-bottom: 0.2em;
+  }
+  .ttt-title {
+    font-size: 2rem;
+  }
+  .ttt-board {
+    --square-size: 56px;
+    padding: 0.38em;
+    gap: 0.44em;
+  }
+  .ttt-square {
+    font-size: 1.28rem;
+    border-radius: 9px;
+  }
+  .ttt-actions {
+    flex-direction: column;
+    gap: 0.62em;
+  }
 }
 
 [data-theme="dark"] {
